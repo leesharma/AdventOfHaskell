@@ -9,4 +9,5 @@ main = do
   [f]   <- getArgs
   input <- readFile f
 
-  putStrLn $ "Final floor: " ++ (show $ findFloor input)
+  putStrLn $ "Final floor: " ++ (show $ findFinalFloor input)
+  putStrLn $ "Descend Into Basement: step #" ++ (show $ findBasementStep input)
