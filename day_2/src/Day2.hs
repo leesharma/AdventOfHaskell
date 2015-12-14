@@ -1,4 +1,4 @@
-module Day2  where
+module Day2 where
 import Data.List.Split (splitOn)
 
 -- Calculates surface area of a box given dimensions
@@ -17,3 +17,12 @@ parseDimFile rawinput =
   let dims = filter (/="") (splitOn "\n" rawinput)
   in [[read dim :: Int | dim <- lwh] | lwh <- (map (splitOn "x") dims) ]
 
+-- Calculates the ribbon needed to go around the smallest side of the box
+ribbon dims = minimum $ perimeters dims
+              where perimeters [l,w,h] = map (*2) [l+w,w+h,h+l]
+
+-- Calculates the ribbon needed for the bow
+bow dims = product dims
+
+-- Calculates the total ribbon needed for a given box
+totalRibbon dims = ribbon dims + bow dims
